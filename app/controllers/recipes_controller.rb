@@ -24,15 +24,15 @@ class RecipesController < ApplicationController
       redirect_to culinary_artists_path, alert: "CulinaryArtist not found!"
     else
       @recipe = Recipe.new(culinary_artist_id: params[:culinary_artist_id])
-      3.times { @recipe.recipe_ingredients.build} #this seems to work
+      #3.times { @recipe.recipe_ingredients.build} #this seems to work
     end
   end
 
   def create
-    
+
     @recipe = Recipe.create(recipe_params)
     #@recipe.recipe_ingredients.build  #added 12/3/18
-    @recipe.culinary_artist_id = current_user.id
+    @recipe.culinary_artist_id = @culinary_artist_id
     if @recipe.valid?
        #@recipe.save
       redirect_to recipe_path(@recipe)

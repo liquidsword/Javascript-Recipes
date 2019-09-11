@@ -1,8 +1,9 @@
 <div>
-<% if current_user %>
+<% if @culinary_artist_id %>
 
 	<%= link_to "Ingredients", ingredients_path %> |
-	<%= link_to "Recipes", recipes_path %> |
+	<%= link_to "Recipes", culinary_artist_recipes_path %> |
+	<%= link_to "New Recipe", new_culinary_artist_recipe_path %> |
 	<%= link_to "Log Out", logout_path %>
 
 <% end %>
