@@ -4,16 +4,31 @@ class SessionsController < ApplicationController
      @culinary_artist = CulinaryArtist.new
    end
 
+  # def create
+  #   #@culinary_artist = CulinaryArtist.find_by(culinary_artist_name: session_params[:culinary_artist_name]) #(commented out 9-11)
+  #   session[:culinary_artist_id] = @culinary_artist_id #(changed from @culinary_artist_id to @culinary_artist.id)
+  #   if @culinary_artist && @culinary_artist.authenticate(params[:culinary_artist][:password])
+  #     session[:culinary_artist_id]= @culinary_artist_id #(changed from @culinary_artist_id to @culinary_artist.id)
+  #     redirect_to culinary_artist_recipes_path(@culinary_artist_id) #after logging in successfully it is redirected to the culinary_artists#show
+  #   else
+  #     #binding.pry
+  #     @culinary_artist = CulinaryArtist.new(email: session_params[:email])
+  #     flash[:error] = "Something went wrong, please try again"
+  #     #render :new
+  #   end
+  # end
+
   def create
-    @culinary_artist = CulinaryArtist.find_by(email: session_params[:email])
-    session[:culinary_artist_id] = @culinary_artist_id
+    @culinary_artist = CulinaryArtist.find_by(culinary_artist_id: session_params[:culinary_artist_id])
+    #session[:culinary_artist_id] = @culinary_artist.id #this should be culinary_artist_name because I set a cookie on the user's browser by writing their username into the session hash
+    session[:culinary_artist_name] = @culinary_artist_name
     if @culinary_artist && @culinary_artist.authenticate(params[:culinary_artist][:password])
-      session[:culinary_artist_id]= @culinary_artist_id
-      redirect_to culinary_artist_recipes_path(@culinary_artist) #after logging in successfully it is redirected to the culinary_artists#show
+      session[:culinary_artist_name] = @culinary_artist_name
+      redirect_to culinary_artist_recipes_path(@culinary_artist_id) #after logging in successfully it is redirected to the culinary_artists#show
     else
       @culinary_artist = CulinaryArtist.new(email: session_params[:email])
       flash[:error] = "Something went wrong, please try again"
-      render :new
+      #render :new
     end
   end
 
@@ -39,6 +54,6 @@ class SessionsController < ApplicationController
   end
 
   def session_params
-    params.require(:culinary_artist).permit(:email, :password)
+    params.require(:culinary_artist).permit(:culinary_artist_id, :culinary_artist_name, :password)
   end
 end
