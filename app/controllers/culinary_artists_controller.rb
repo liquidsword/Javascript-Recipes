@@ -12,8 +12,8 @@ class CulinaryArtistsController < ApplicationController
     #binding.pry
     @culinary_artist = CulinaryArtist.create(culinary_artist_params)
       if @culinary_artist.save
-        session[:culinary_artist_id] = @culinary_artist_id #(changed from @culinary_artist_id to @culinary_artist.id)
-        redirect_to culinary_artist_recipes_path(@culinary_artist_id), notice: "Welcome to your recipes!"
+        session[:culinary_artist_name] = @culinary_artist_name #(This may need to be changed to culinary_artist_name)
+        redirect_to @culinary_artist, notice: "Welcome to your recipes!"
       else
         #binding.pry
         render :new

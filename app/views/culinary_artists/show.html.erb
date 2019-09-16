@@ -1,6 +1,6 @@
-<h3>Welcome, <% current_user %> here are your recipes: </h3>
+<h3>Welcome here are your recipes: </h3>
 
-<%= link_to "New Recipe", new_culinary_artist_recipe_path(current_user), class: "btn btn-primary" %>
+<%= link_to "New Recipe", new_culinary_artist_recipe_path(@culinary_artist), class: "btn btn-primary" %>
 
 <p>Recipes: </p>
   <% @culinary_artist.recipes.each do |recipe| %>
@@ -14,3 +14,5 @@
     <div><%= x.name %></div>
 
 <% end %>
+
+<%= link_to "Back", recipes_path %>
