@@ -12,7 +12,7 @@ class CulinaryArtistsController < ApplicationController
     #binding.pry
     @culinary_artist = CulinaryArtist.create(culinary_artist_params)
       if @culinary_artist.save
-        session[:culinary_artist_name] = @culinary_artist_name #(This may need to be changed to culinary_artist_name)
+        session[:culinary_artist_name] = @culinary_artist_name 
         redirect_to @culinary_artist, notice: "Welcome to your recipes!"
       else
         #binding.pry
