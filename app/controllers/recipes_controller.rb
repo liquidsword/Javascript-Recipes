@@ -4,8 +4,16 @@ class RecipesController < ApplicationController
     if params[:culinary_artist_id]
       @recipes = CulinaryArtist.find(params[:culinary_artist_id]).recipes
       @culinary_artist_id = params[:culinary_artist_id]
+      respond_to do |f|
+        f.html
+        f.json {render json: @recipes} #recipes.json isn't working
+        end
     else
       @recipes = Recipe.all
+      respond_to do |f|
+        f.html
+        f.json {render json: @recipes}
+        end
     end
   end
 
@@ -17,6 +25,9 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id]) #have to make sure this code stays or it can't find title method
+    respond_to do |f|
+      f.html { render :show}
+      f.json {render json: @recipe }
   end
 
   def new
@@ -34,11 +45,12 @@ class RecipesController < ApplicationController
     #@recipe.recipe_ingredients.build  #added 12/3/18
     @recipe.culinary_artist_id = @culinary_artist_id
     if @recipe.valid?
-       #@recipe.save
-      redirect_to recipe_path(@recipe)
+       #redirect_to recipe_path(@recipe)
+      render json: @recipe #(added 8-26-19)
     else
       3.times { @recipe.recipe_ingredients.build } #added 10-2-18
-      render 'new'
+      #render 'new'
+      render json: @recipe, status: 201
     end
   end
 
