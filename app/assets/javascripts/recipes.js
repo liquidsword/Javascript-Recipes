@@ -21,14 +21,14 @@
       e.preventDefault()
       let id = $(this).attr('data-id')
       fetch(`/recipes/${id}.json`)
-      .then(response => response.json())
-      .then(recipe => {
+        .then(response => response.json())
+        .then(recipe => {
           let newRecipe = new Recipe(recipe)
           let recipeHtml = newRecipe.formatShow()
     });
   };
 
-    $("#new_recipe").on("create_recipe", function(e) {
+    $("#new_recipe").on("create_recipe", function (e) {
       e.preventDefault()
       const values = $(this).serialize()
 
@@ -37,7 +37,6 @@
               const newRecipe = new Recipe(data)
               const htmlToAdd = newRecipe.formatShow()
             $("app-container").html('htmlToAdd')
-
         })
     })
 
