@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
       @culinary_artist_id = params[:culinary_artist_id]
       respond_to do |f|
         f.html
-        f.json {render json: @recipes} 
+        f.json {render json: @recipes}
         end
     else
       @recipes = Recipe.all
@@ -28,6 +28,7 @@ class RecipesController < ApplicationController
     respond_to do |f|
       f.html { render :show}
       f.json {render json: @recipe }
+    end
   end
 
   def new
@@ -40,7 +41,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-
     @recipe = Recipe.create(recipe_params)
     #@recipe.recipe_ingredients.build  #added 12/3/18
     @recipe.culinary_artist_id = @culinary_artist_id
