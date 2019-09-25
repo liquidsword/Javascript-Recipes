@@ -3,7 +3,7 @@
   })
 
   const bindClickOnHandlers = () => {
-    $('.all_recipes').on('click', (r) => {
+    $('.all_recipes').on('click', r => {
       r.preventDefault()
       history.pushState(null, null, "recipes")
       fetch('/recipes.json')
@@ -31,7 +31,6 @@
     $("#new_recipe").on("create_recipe", function (e) {
       e.preventDefault()
       const values = $(this).serialize()
-
       $.recipe("/recipes", values).done(function (data) {
             $("#app-container").html('')
               const newRecipe = new Recipe(data)
@@ -44,13 +43,13 @@
     this.id = recipe.id;
     this.title = recipe.title;
     this.instructions = recipe.instructions;
-    this.culinary_artist_id = recipe.culinary_artist_id;
+    this.culinary_artist_name = recipe.culinary_artist_name
 
   }
 
   Recipe.prototype.formatIndex = function (){
     let recipeHtml = `
-      <h3>${this.title}</h3> by <h6>${this.culinary_artist_name.email}</h6>
+      <a href="/recipes/${this.title}" data-id = "${this.id}" class="show_link" by <h6>${this.culinary_artist_name}</h6>
     `
     return recipeHtml
   }

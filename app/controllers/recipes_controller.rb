@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
       @culinary_artist_id = params[:culinary_artist_id]
       respond_to do |f|
         f.html
-        f.json {render json: @recipes} #recipes.json isn't working
+        f.json {render json: @recipes} 
         end
     else
       @recipes = Recipe.all
