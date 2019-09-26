@@ -20,7 +20,6 @@ class CulinaryArtistsController < ApplicationController
 
   def show
     @culinary_artist = CulinaryArtist.find(params[:id]) #added show method because of login from sessions controller
-    #render json: @culinary_artist
   end
 
 private

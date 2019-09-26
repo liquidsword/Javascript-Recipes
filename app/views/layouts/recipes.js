@@ -3,10 +3,10 @@
   })
 
   const bindClickOnHandlers = () => {
-    $('.all_recipes').on('click', r => {
+    $('.all_recipes').on('click', (r) => {
       r.preventDefault()
       history.pushState(null, null, "recipes")
-      fetch(`/recipes.json`)
+      fetch('/recipes.json')
         .then(response => response.json())
         .then(recipe => {
           $('#app-container').html('')
@@ -21,21 +21,23 @@
       e.preventDefault()
       let id = $(this).attr('data-id')
       fetch(`/recipes/${id}.json`)
-        .then(response => response.json())
-        .then(recipe => {
+      .then(response => response.json())
+      .then(recipe => {
           let newRecipe = new Recipe(recipe)
           let recipeHtml = newRecipe.formatShow()
     });
   };
 
-    $("#new_recipe").on("create_recipe", function (e) {
+    $("#new_recipe").on("create_recipe", function(e) {
       e.preventDefault()
       const values = $(this).serialize()
+
       $.recipe("/recipes", values).done(function (data) {
             $("#app-container").html('')
               const newRecipe = new Recipe(data)
               const htmlToAdd = newRecipe.formatShow()
             $("app-container").html('htmlToAdd')
+
         })
     })
 
@@ -43,13 +45,13 @@
     this.id = recipe.id;
     this.title = recipe.title;
     this.instructions = recipe.instructions;
-    this.culinary_artist_id = recipe.culinary_artist_id
+    this.culinary_artist_id = recipe.culinary_artist_id;
 
   }
 
   Recipe.prototype.formatIndex = function (){
     let recipeHtml = `
-      <a href="/recipes/${this.title}" data-id = "${this.id}" class="show_link" by <h6>${this.culinary_artist_id}</h6>
+      <h3>${this.title}</h3> by <h6>${this.culinary_artist_name.email}</h6>
     `
     return recipeHtml
   }

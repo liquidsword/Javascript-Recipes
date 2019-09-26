@@ -48,8 +48,7 @@ class RecipesController < ApplicationController
        #redirect_to recipe_path(@recipe)
       render json: @recipe #(added 8-26-19)
     else
-      3.times { @recipe.recipe_ingredients.build } #added 10-2-18
-      #render 'new'
+      #3.times { @recipe.recipe_ingredients.build } #added 10-2-18
       render json: @recipe, status: 201
     end
   end
