@@ -4,9 +4,9 @@ class CulinaryArtistsController < ApplicationController
     @culinary_artist = CulinaryArtist.new
   end
 
-  def index
-    @culinary_artists = CulinaryArtist.all
-  end
+  # def index
+  #   @culinary_artists = CulinaryArtist.all
+  # end
 
   def create
     @culinary_artist = CulinaryArtist.create(culinary_artist_params)

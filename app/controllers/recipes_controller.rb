@@ -17,6 +17,8 @@ class RecipesController < ApplicationController
     end
   end
 
+
+
   def alpha
     #@recipes.order(title: 'desc') #tell which view to render, move to model, call the scope method here
     @recipes = Recipe.alphabetize
