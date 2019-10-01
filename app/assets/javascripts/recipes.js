@@ -6,7 +6,7 @@
     $('.all_recipes').on('click', r => {
       r.preventDefault()
       history.pushState(null, null, "recipes")
-      fetch(`/recipes.json`)
+      fetch(`/recipes.json`) 
         .then(response => response.json())
         .then(recipe => {
           $('#app-container').html('')

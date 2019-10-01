@@ -38,15 +38,15 @@ table#t01 th {
     <td><%= recipe.title.titlecase %></td>
     <td><%= recipe.instructions %></td>
     <td><%= link_to "Show", recipe %></td>
-    <td><%= link_to "Edit", edit_recipe_path(recipe) if current_user == recipe.culinary_artist %></td>
-    <td><%= link_to "Destroy", recipe, method: :delete, data: { confirm: "Are you absolutely certain?" } if current_user == recipe.culinary_artist %>  </td>
+    <td><%= link_to "Edit", edit_recipe_path(recipe) %></td>
+    <td><%= link_to "Destroy", recipe, method: :delete, data: { confirm: "Are you absolutely certain?" } %>  </td>
   </tr>
 
 <% end %>
 </table>
 
 <br>
-<% if current_user %>
+<% if @culinary_artist %>
   <%= link_to "Index", recipes_path %> |
   <%= link_to "Log Out", logout_path %> |
   <%= link_to "Something new", new_recipe_path %> |
