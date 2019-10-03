@@ -8,7 +8,7 @@ get "/logout", to: "sessions#destroy"
 get "/alpha/recipes", to: "recipes#alpha"
 
 resources :culinary_artists do
-  resources :recipes, only: [:show, :index, :new, :create, :edit]
+  resources :recipes, only: [:show, :index, :new, :create, :edit, :destroy]
 end
 
 resources :recipes
