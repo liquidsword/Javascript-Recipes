@@ -5,7 +5,7 @@
   const bindClickOnHandlers = () => {
     $('.all_recipes').on('click', r => {
       r.preventDefault()
-      history.pushState(null, null, "recipes")
+      history.pushState(null, null, "/recipes")
       fetch(`/recipes.json`)
         .then(response => response.json())
         .then(recipe => {
@@ -43,7 +43,7 @@
     this.id = recipe.id;
     this.title = recipe.title;
     this.instructions = recipe.instructions;
-    this.culinary_artist_id = recipe.culinary_artist.id
+    this.culinary_artist = recipe.culinary_artist
 
   }
 

@@ -12,7 +12,7 @@ resources :culinary_artists do
   resources :recipe_ingredients, only: [:index, :show]
 end
 
-resources :recipes
+resources :recipes, only: [:show, :index, :new, :create, :edit, :destroy]
 
 #resources :recipe_ingredients
 

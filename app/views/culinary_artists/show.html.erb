@@ -1,21 +1,14 @@
-<h3>Welcome here are your recipes: </h3>
+<h3>Keep being creative </h3> 
 
-<%= link_to "New Recipe", new_culinary_artist_recipe_path(@culinary_artist), class: "btn btn-primary" %>
-
-<p>Recipes: </p>
+<h2>Recipes: </h2>
   <% @culinary_artist.recipes.each do |recipe| %>
     <div><%= recipe.title %></div>
 
 <% end %>
-
-<p>Ingredients: </p>
-
-  <% @culinary_artist.ingredients.each do |x| %>
-    <div><%= x.name %></div>
-
-<% end %>
+<br>
 
 	<%= link_to "Ingredients", ingredients_path %> |
 	<%= link_to "Recipes", culinary_artist_recipes_path(@culinary_artist) %> |
 	<%= link_to "New Recipe", new_culinary_artist_recipe_path(@culinary_artist) %> |
 	<%= link_to "Log Out", logout_path %>
+<br>

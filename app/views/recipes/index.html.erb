@@ -39,18 +39,10 @@ table#t01 th {
     <td><%= recipe.instructions %></td>
     <td><%= link_to "Show", recipe %></td>
     <td><%= link_to "Edit", edit_recipe_path(recipe) %></td>
-    <td><%= link_to "Destroy", recipe, method: :delete, data: { confirm: "Are you absolutely certain?" } %>  </td>
+    <td><%= link_to "Destroy", recipe_path(recipe), method: :delete, data: { confirm: "Are you absolutely certain?" } %>  </td>
   </tr>
 
 <% end %>
 </table>
 
 <br>
-<!-- <% if @culinary_artist_id %> -->
-  <!-- <%= link_to "Recipes", culinary_artist_recipes_path, class: "all_recipes" %> |
-  <%= link_to "Log Out", logout_path %> |
-  <%= link_to "Something new", new_culinary_artist_recipe_path %> |
-  <%= link_to "Order", alpha_recipes_path %>
-<% else %>
-  <%= link_to "Homepage", root_path %>
-<% end %> -->

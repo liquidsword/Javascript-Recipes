@@ -10,14 +10,12 @@ class RecipesController < ApplicationController
         end
     else
       @recipes = Recipe.all
-      respond_to do |f|
-        f.html
-        f.json {render json: @recipes}
-        end
+      # respond_to do |f|
+      #   f.html
+      #   f.json {render json: @recipes}
+      #   end
     end
   end
-
-
 
   def alpha
     #@recipes.order(title: 'desc') #tell which view to render, move to model, call the scope method here
@@ -47,8 +45,8 @@ class RecipesController < ApplicationController
     #@recipe.recipe_ingredients.build  #added 12/3/18
     @recipe.culinary_artist_id = @culinary_artist_id
     if @recipe.valid?
-       #redirect_to recipe_path(@recipe)
-      render json: @recipe #(added 8-26-19)
+       redirect_to recipe_path(@recipe)
+       #render json: @recipe #(added 8-26-19)
     else
       #3.times { @recipe.recipe_ingredients.build } #added 10-2-18
       render json: @recipe, status: 201
