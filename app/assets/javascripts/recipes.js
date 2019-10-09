@@ -44,7 +44,6 @@
     this.title = recipe.title;
     this.instructions = recipe.instructions;
     this.culinary_artist = recipe.culinary_artist
-
   }
 
   Recipe.prototype.formatIndex = function (){
