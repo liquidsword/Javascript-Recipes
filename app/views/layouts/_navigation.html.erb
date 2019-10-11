@@ -1,13 +1,11 @@
 <ul class="navbar-nav">
-<div>
 <% if @culinary_artist_id %>
-
-	<!-- <%= link_to "Ingredients", ingredients_path %> | -->
-	<%= link_to "Recipes", culinary_artist_recipes_path, class: "all_recipes" %> |
-	<%= link_to "New Recipe", new_culinary_artist_recipe_path %> |
-	<%= link_to "Log Out", logout_path %>
+	<li><%= link_to "New Recipe", new_recipe_path, class: "navbar-brand" %> </li>
+	<li><%= link_to "Log Out", logout_path, class: "navbar-brand" %> </li>
+	<li><%= link_to "Ingredients", ingredients_path, class: "navbar-brand" %> </li>
+	<!-- <% else %> -->
+	<li><%= link_to "Recipes", culinary_artist_recipes_path, class: "all_recipes" %> </li>|
 
 <% end %>
-
-</div>
+	<li><%= link_to "Index", recipes_path, class: "all_recipes" %> </li>
 </ul>

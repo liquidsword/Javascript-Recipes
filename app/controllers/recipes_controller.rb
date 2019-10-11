@@ -13,6 +13,14 @@ class RecipesController < ApplicationController
     end
   end
 
+  # def index
+  #   @recipes = Recipe.all
+  #   respond_to do |f|
+  #       f.html
+  #       f.json {render json: @recipes}
+  #     end
+  # end
+
   def alpha
     @recipes = Recipe.alphabetize
     render 'index'
@@ -38,10 +46,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.create(recipe_params)
     @recipe.culinary_artist_id = @culinary_artist_id
     if @recipe.valid?
-       redirect_to recipe_path(@recipe)
-       #render json: @recipe #(added 8-26-19)
+       #redirect_to recipe_path(@recipe)
+       render json: @recipe #(added 8-26-19)
     else
-      render json: @recipe, status: 201
+       render json: @recipe, status: 201
     end
   end
 
