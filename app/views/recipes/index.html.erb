@@ -33,15 +33,17 @@ table#t01 th {
     <th>Delete Links</th>
   </tr>
 
+<% if @culinary_artist %>
+
 <% @recipes.each do |recipe| %>
   <tr>
     <td><%= recipe.title.titlecase %></td>
     <td><%= recipe.instructions %></td>
     <td><%= link_to "Show", recipe %></td>
-    <td><%= link_to "Edit", edit_recipe_path(recipe) %></td>
+    <td><%= link_to "Edit", edit_culinary_artist_recipe_path %></td>
     <td><%= link_to "Destroy", recipe_path(recipe), method: :delete, data: { confirm: "Are you absolutely certain?" } %>  </td>
   </tr>
-
+ <% end %>
 <% end %>
 </table>
 

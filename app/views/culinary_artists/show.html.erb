@@ -1,14 +1,16 @@
-<h3>Keep being creative </h3> 
-
-<h2>Recipes: </h2>
+<h2>Keep being creative </h2>
+<br>
+<h3>Here's what you've been working on so far: </h3>
+<br>
   <% @culinary_artist.recipes.each do |recipe| %>
     <div><%= recipe.title %></div>
 
 <% end %>
 <br>
-
+<ul class="navbar-nav">
 	<%= link_to "Ingredients", ingredients_path %> |
-	<%= link_to "Recipes", culinary_artist_recipes_path(@culinary_artist) %> |
+	<%= link_to "Recipes", culinary_artist_recipes_path(@culinary_artist), class: "all_recipes" %> |
 	<%= link_to "New Recipe", new_culinary_artist_recipe_path(@culinary_artist) %> |
 	<%= link_to "Log Out", logout_path %>
 <br>
+</ul>
