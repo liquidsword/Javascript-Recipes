@@ -7,15 +7,15 @@ const bindClickOnHandlers = () => {
        fetch(`/recipes`)
          .then(response => response.json())
          .then(recipes => {
-           console.log(recipes)
-             // $('#app-container').html('')
-             // recipes.forEach(recipe => {
-             //     let newRecipe = new Recipe(recipe)
-             //     let recipeHtml = newRecipe.formatIndex()
-             //     $('#app-container').append(recipeHtml)
+           // console.log(recipes)
+             $('#app-container').html('')
+             recipes.forEach(recipe => {
+                 let newRecipe = new Recipe(recipe)
+                 let recipeHtml = newRecipe.formatIndex()
+                 $('#app-container').append(recipeHtml)
              })
          })
-    }
+    })
     $(document).on('click', ".show_link", function (e) {
       e.preventDefault()
       $('#app-container').html('')
@@ -28,28 +28,29 @@ const bindClickOnHandlers = () => {
           $('#app-container').append(recipeHtml)
     });
   });
-  //
-  // $("#new_recipe").on("submit", function (e) {
-  //   e.preventDefault()
-  //   const values = $(this).serialize()
-  //   $.recipe("/recipes", values).done(function(data) {
-  //     $("app-container").html('')
-  //     $("app-container").html('<h1>Donkey</h1')
-  //           // const newRecipe = new Recipe(data)
-  //           // const htmlToAdd = newRecipe.formatShow()
-  //         // $("app-container").html('htmlToAdd')
-  //     })
-  //   })
-// }
+
+
+  $("#new_recipe").on("submit", function (e) {
+    e.preventDefault()
+    const values = $(this).serialize()
+    $.post("/recipes", values).done(function(data) {
+      // console.log(data)
+      $('#app-container').html('')
+            const newRecipe = new Recipe(data)
+            const htmlToAdd = newRecipe.formatShow()
+          $('#app-container').html(htmlToAdd)
+      })
+    })
+}
 
 $(() => {
   bindClickOnHandlers()
 })
 
    function Recipe(recipe) {
-     this.id = recipe.id;
-     this.title = recipe.title;
-     this.instructions = recipe.instructions;
+     this.id = recipe.id
+     this.title = recipe.title
+     this.instructions = recipe.instructions
      this.culinary_artist_id = recipe.culinary_artist_id
    }
 
