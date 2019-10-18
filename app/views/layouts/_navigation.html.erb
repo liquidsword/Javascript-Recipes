@@ -1,9 +1,7 @@
 <ul class="navbar-nav">
-<!-- <% if @culinary_artist_id %>
-	<li><%= link_to "New Recipe", new_recipe_path, class: "navbar-brand" %> </li>
-	<li><%= link_to "Log Out", logout_path, class: "navbar-brand" %> </li>
-	<li><%= link_to "Ingredients", ingredients_path, class: "navbar-brand" %> </li> -->
-	<li><%= link_to "Recipes", culinary_artist_recipes_path, class: "all_recipes" %> </li>
 
-<!-- <% end %> -->
+
+	<li><%= link_to "Index", recipes_path(@culinary_artist), class: "all_recipes" %> </li>
+
+
 </ul>

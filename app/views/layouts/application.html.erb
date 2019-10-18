@@ -5,19 +5,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <div class="container"
+    <div class="container" >
       <%= render 'layouts/navigation_bar' %>
         <div id="app-container">
 
-            <div class="wrapper">
               <%= yield %>
-            </div>
+
           </div>
             <footer class="branding">
               <br>

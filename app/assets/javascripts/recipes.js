@@ -1,20 +1,21 @@
 
+
 const bindClickOnHandlers = () => {
-  // console.log('hi')
    $('.all_recipes').on('click', r => {
        r.preventDefault()
        history.pushState(null, null, "recipes")
-       fetch(`recipes.json`)
+       fetch(`/recipes`)
          .then(response => response.json())
          .then(recipes => {
-             $('#app-container').html('')
-             recipes.forEach(recipe => {
-                 let newRecipe = new Recipe(recipe)
-                 let recipeHtml = newRecipe.formatIndex()
-                 $('#app-container').append(recipeHtml)
+           console.log(recipes)
+             // $('#app-container').html('')
+             // recipes.forEach(recipe => {
+             //     let newRecipe = new Recipe(recipe)
+             //     let recipeHtml = newRecipe.formatIndex()
+             //     $('#app-container').append(recipeHtml)
              })
          })
-    })
+    }
     $(document).on('click', ".show_link", function (e) {
       e.preventDefault()
       $('#app-container').html('')
@@ -27,11 +28,23 @@ const bindClickOnHandlers = () => {
           $('#app-container').append(recipeHtml)
     });
   });
-};
+  //
+  // $("#new_recipe").on("submit", function (e) {
+  //   e.preventDefault()
+  //   const values = $(this).serialize()
+  //   $.recipe("/recipes", values).done(function(data) {
+  //     $("app-container").html('')
+  //     $("app-container").html('<h1>Donkey</h1')
+  //           // const newRecipe = new Recipe(data)
+  //           // const htmlToAdd = newRecipe.formatShow()
+  //         // $("app-container").html('htmlToAdd')
+  //     })
+  //   })
+// }
 
-   $(() => {
-     bindClickOnHandlers()
-   })
+$(() => {
+  bindClickOnHandlers()
+})
 
    function Recipe(recipe) {
      this.id = recipe.id;
@@ -56,19 +69,3 @@ const bindClickOnHandlers = () => {
        `
      return recipeHtml
    }
-
-
- //
- //   $("#new_recipe").on("create_recipe", function (e) {
- //     e.preventDefault()
- //     const values = $(this).serialize()
- //     $.recipe("/culinary_artists/${id}/recipes", values).done(function (data) {
- //           $("#app-container").html('')
- //             const newRecipe = new Recipe(data)
- //             const htmlToAdd = newRecipe.formatShow()
- //           $("app-container").html('htmlToAdd')
- //       })
- //   })
- //
-
- //

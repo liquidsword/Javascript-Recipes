@@ -9,7 +9,7 @@
 <br>
 <ul class="navbar-nav">
 	<%= link_to "Ingredients", ingredients_path %> |
-	<%= link_to "Recipes", culinary_artist_recipes_path(@culinary_artist), class: "all_recipes" %> |
+	<%= link_to "Recipes", culinary_artist_path(@culinary_artist) %> |
 	<%= link_to "New Recipe", new_culinary_artist_recipe_path(@culinary_artist) %> |
 	<%= link_to "Log Out", logout_path %>
 <br>

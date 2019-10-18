@@ -1,25 +1,22 @@
 class RecipesController < ApplicationController
 
+#   def index
+#     # binding.pry
+#     # if params[:culinary_artist_id]
+#        # culinary_artist = CulinaryArtist.find_by(id: params[:culinary_artist_id])
+#       # binding.pry
+#       @recipes = CulinaryArtist.find(params[:culinary_artist_id]).recipes
+#       # binding.pry
+#       respond_to do |f|
+#         f.html
+#         f.json {render json: @recipes}
+#         end
+#       end
+# end
   def index
-    if params[:culinary_artist_id]
-      @recipes = CulinaryArtist.find(params[:culinary_artist_id]).recipes
-      @culinary_artist_id = params[:culinary_artist_id]
-      respond_to do |f|
-        f.html
-        f.json {render json: @recipes}
-        end
-    else
-      @recipes = Recipe.all
-    end
+    @recipes = Recipe.all
+        render json: @recipes
   end
-
-  # def index
-  #   @recipes = Recipe.all
-  #   respond_to do |f|
-  #       f.html
-  #       f.json {render json: @recipes}
-  #     end
-  # end
 
   def alpha
     @recipes = Recipe.alphabetize
