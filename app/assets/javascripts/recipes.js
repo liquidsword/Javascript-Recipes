@@ -16,6 +16,11 @@ const bindClickOnHandlers = () => {
              })
          })
     })
+    $('#sort').on('click', s => {
+      s.preventDefault()
+      console.log("hi there")
+    })
+
     $(document).on('click', ".show_link", function (e) {
       e.preventDefault()
       $('#app-container').html('')
