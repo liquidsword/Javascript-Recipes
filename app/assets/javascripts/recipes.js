@@ -16,11 +16,27 @@ const bindClickOnHandlers = () => {
              })
          })
     })
+
     $('#sort').on('click', s => {
       s.preventDefault()
-      console.log("hi there")
+      fetch(`/recipes`)
+        .then(response => response.json())
+        .then(recipes => {
+          recipes.sort(function(a, b) {
+              var titleA = a.title.toUpperCase(); // ignore upper and lowercase
+              var titleB = b.title.toUpperCase(); // ignore upper and lowercase
+              if (titleA < titleB) {
+                return -1;
+              }
+              if (titleA > titleB) {
+                return 1;
+              }
+              // names must be equal
+              return 0;
+            });
+            console.log(recipes)
+        })
     })
-
     $(document).on('click', ".show_link", function (e) {
       e.preventDefault()
       $('#app-container').html('')
@@ -55,6 +71,7 @@ $(() => {
    function Recipe(recipe) {
      this.id = recipe.id
      this.title = recipe.title
+     this.recipe_ingredients = recipe.recipe_ingredients
      this.instructions = recipe.instructions
      this.culinary_artist_id = recipe.culinary_artist_id
    }
