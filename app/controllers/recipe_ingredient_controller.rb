@@ -23,6 +23,7 @@ class RecipeIngredientController < ApplicationController
 
   def show
     @recipe_ingredient = Recipe_ingredient.find_by(params[:id])
+    render json: @recipe_ingredient
   end
 
   def edit

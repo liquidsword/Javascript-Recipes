@@ -9,7 +9,7 @@ class RecipeIngredient < ApplicationRecord
   accepts_nested_attributes_for :recipe, allow_destroy: true
 
   def ingredient_name=(ingredient_name) #setter
-    self.ingredient_id = Ingredient.find_or_create_by(name: ingredient_name).id
+    self.ingredient = Ingredient.find_or_create_by(name: ingredient_name)
   end
 
   def ingredient_name #getter

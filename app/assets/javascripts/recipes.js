@@ -7,7 +7,6 @@ const bindClickOnHandlers = () => {
        fetch(`/recipes`)
          .then(response => response.json())
          .then(recipes => {
-           // console.log(recipes)
              $('#app-container').html('')
              recipes.forEach(recipe => {
                  let newRecipe = new Recipe(recipe)
@@ -37,6 +36,7 @@ const bindClickOnHandlers = () => {
             console.log(recipes)
         })
     })
+
     $(document).on('click', ".show_link", function (e) {
       e.preventDefault()
       $('#app-container').html('')
@@ -51,12 +51,12 @@ const bindClickOnHandlers = () => {
   });
 
 
-  $("#new_recipe").on("submit", function (e) {
-    e.preventDefault()
-    const values = $(this).serialize()
-    $.post("/recipes", values).done(function(data) {
-      // console.log(data)
-      $('#app-container').html('')
+    $("#new_recipe").on("submit", function (e) {
+      e.preventDefault()
+      const values = $(this).serialize()
+      $.post("/recipes", values).done(function(data) {
+        // console.log(data)
+        $('#app-container').html('')
             const newRecipe = new Recipe(data)
             const htmlToAdd = newRecipe.formatShow()
           $('#app-container').html(htmlToAdd)
@@ -71,24 +71,30 @@ $(() => {
    function Recipe(recipe) {
      this.id = recipe.id
      this.title = recipe.title
-     this.recipe_ingredients = recipe.recipe_ingredients
      this.instructions = recipe.instructions
      this.culinary_artist_id = recipe.culinary_artist_id
-   }
+     this.ingredients = recipe.ingredients
+     }
 
 
    Recipe.prototype.formatIndex = function (){
      let recipeHtml = `
-       <a href="/recipes/${this.id}" data-id="${this.id}"
+          <a href="/recipes/${this.id}" data-id="${this.id}"
        class="show_link"><h1>${this.title}</h1> by <h6>${this.culinary_artist_id}</h6>
      `
      return recipeHtml
    }
 
    Recipe.prototype.formatShow = function (){
-     let recipeHtml = `
-         <h3>${this.title} </h3>
-         <h4>${this.instructions}</h4>
-       `
+     let ingredientList = ""
+     this.ingredients.forEach(ingredient => ingredientList += `<li>${ingredient.name}</li>`)
+     let recipeHtml =`
+            <h3>${this.title} </h3>
+            <h4>${this.instructions}</h4>
+            <h4>Ingredients: </h4>
+              <ul>
+                   ${ingredientList}
+              </ul>
+              `
      return recipeHtml
    }

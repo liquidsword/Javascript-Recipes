@@ -19,6 +19,7 @@ class IngredientsController < ApplicationController
 
   def show
     @ingredient = Ingredient.find(params[:id])
+    render json: @ingredient
   end
 
   def create
@@ -44,5 +45,5 @@ class IngredientsController < ApplicationController
     @ingredients = Ingredient.all
     redirect_to ingredients_path
   end
-  
+
 end
