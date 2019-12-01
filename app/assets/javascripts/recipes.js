@@ -21,6 +21,7 @@ const bindClickOnHandlers = () => {
       fetch(`/recipes`)
         .then(response => response.json())
         .then(recipes => {
+          $('#app-container').html('')
           recipes.sort(function(a, b) {
               var titleA = a.title.toUpperCase(); // ignore upper and lowercase
               var titleB = b.title.toUpperCase(); // ignore upper and lowercase
@@ -30,12 +31,25 @@ const bindClickOnHandlers = () => {
               if (titleA > titleB) {
                 return 1;
               }
-              // names must be equal
               return 0;
             });
-            console.log(recipes)
+          recipes.forEach(recipe => {
+              let newRecipe = new Recipe(recipe)
+              let recipeHtml = newRecipe.formatIndex()
+              $('#app-container').append(recipeHtml)
+            })
         })
     })
+
+    $('#filter').on('click', f => {
+      f.preventDefault()
+      fetch(`/recipes`)
+            .then(response => response.json())
+            .then(recipes => {
+                  let filteredRecipes = recipes.filter(recipe => recipe.title === "Check again");
+                  console.log(filteredRecipes)
+              })
+        })
 
     $(document).on('click', ".show_link", function (e) {
       e.preventDefault()
@@ -55,7 +69,6 @@ const bindClickOnHandlers = () => {
       e.preventDefault()
       const values = $(this).serialize()
       $.post("/recipes", values).done(function(data) {
-        // console.log(data)
         $('#app-container').html('')
             const newRecipe = new Recipe(data)
             const htmlToAdd = newRecipe.formatShow()
@@ -87,7 +100,7 @@ $(() => {
 
    Recipe.prototype.formatShow = function (){
      let ingredientList = ""
-     this.ingredients.forEach(ingredient => ingredientList += `<li>${ingredient.name}</li>`)
+          this.ingredients.forEach(ingredient => ingredientList += `<li>${ingredient.name}</li>`)
      let recipeHtml =`
             <h3>${this.title} </h3>
             <h4>${this.instructions}</h4>
