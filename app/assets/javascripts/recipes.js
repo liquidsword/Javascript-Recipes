@@ -46,8 +46,13 @@ const bindClickOnHandlers = () => {
       fetch(`/recipes`)
             .then(response => response.json())
             .then(recipes => {
+                $('#app-container').html('')
                   let filteredRecipes = recipes.filter(recipe => recipe.title === "Check again");
-                  console.log(filteredRecipes)
+                filteredRecipes.forEach(recipe => {
+                  let newRecipe = new Recipe(recipe)
+                  let recipeHtml = newRecipe.formatIndex()
+                  $('#app-container').append(recipeHtml)
+                })
               })
         })
 
